@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+  name     String
+  role     Role   @default(USER)
+}
+
+model kegiatan {
+  kode_transaksi String    @id @db.VarChar(20)
+  kegiatan       String?
+  tempat         String?   @db.VarChar(100)
+  waktu          DateTime? @db.Timestamp(6)
+  transaksi      transaksi @relation(fields: [kode_transaksi], references: [kode_transaksi], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model proyektor {
+  kode_proyektor String      @id @db.VarChar(10)
+  merek          String?     @db.VarChar(50)
+  nomor_seri     String?     @db.VarChar(50)
+  status         String?     @db.VarChar(20)
+  transaksi      transaksi[]
+}
+
+model transaksi {
+  kode_transaksi     String            @id @db.VarChar(20)
+  kode_proyektor     String?           @db.VarChar(10)
+  nik                String?           @db.VarChar(20)
+  status             String?           @db.VarChar(20)
+  waktu_dikembalikan DateTime?         @db.Timestamp(6)
+  kegiatan           kegiatan?
+  proyektor          proyektor?        @relation(fields: [kode_proyektor], references: [kode_proyektor], onDelete: NoAction, onUpdate: NoAction)
+  penanggung_jawab   penanggung_jawab? @relation(fields: [nik], references: [nik], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model penanggung_jawab {
+  nik       String      @id @db.VarChar(20)
+  nama      String?     @db.VarChar(100)
+  no_hp     String?     @db.VarChar(15)
+  transaksi transaksi[]
+}

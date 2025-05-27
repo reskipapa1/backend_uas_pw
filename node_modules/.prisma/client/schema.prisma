@@ -7,11 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  ADMIN
-}
-
 model User {
   id       Int    @id @default(autoincrement())
   email    String @unique
@@ -45,6 +40,9 @@ model transaksi {
   kegiatan           kegiatan?
   proyektor          proyektor?        @relation(fields: [kode_proyektor], references: [kode_proyektor], onDelete: NoAction, onUpdate: NoAction)
   penanggung_jawab   penanggung_jawab? @relation(fields: [nik], references: [nik], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([kode_proyektor], map: "transaksi_kode_proyektor_fkey")
+  @@index([nik], map: "transaksi_nik_fkey")
 }
 
 model penanggung_jawab {
@@ -52,4 +50,9 @@ model penanggung_jawab {
   nama      String?     @db.VarChar(100)
   no_hp     String?     @db.VarChar(15)
   transaksi transaksi[]
+}
+
+enum Role {
+  USER
+  ADMIN
 }

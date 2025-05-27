@@ -15,6 +15,8 @@ app.use(cors({
   credentials: true
 }));
 
+ console.log('User role:');
+
 app.use(express.json());
 
 app.use('/kegiatan', kegiatanRoutes);

@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';  // import cors
-import kegiatanRoutes from './src/routes/kegiatanroutes';
-import pjRoutes from './src/routes/pjroutes';
-import authRoutes from './src/routes/authroutes';
-import proyektorRoutes from './src/routes/proyektorroutes';
-import transaksiRoutes from './src/routes/transaksiroutes';
-import riwayatRoutes from './src/routes/riwayatroutes';
+import kegiatanRoutes from './routes/kegiatanroutes';
+import pjRoutes from './routes/pjroutes';
+import authRoutes from './routes/authroutes';
+import proyektorRoutes from './routes/proyektorroutes';
+import transaksiRoutes from './routes/transaksiroutes';
+import riwayatRoutes from './routes/riwayatroutes';
 
 const app = express();
 

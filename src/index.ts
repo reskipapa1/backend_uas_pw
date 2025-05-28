@@ -10,12 +10,7 @@ import riwayatRoutes from './routes/riwayatroutes';
 const app = express();
 
 // ✅ Tambahkan CORS dengan konfigurasi lengkap
-app.use(cors({
-  origin: ['http://localhost:3000'], // tambahkan frontend URL saja
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'], // penting untuk token/jwt
-  credentials: true,
-}));
+app.use(cors());
 
 // ✅ Pastikan Express bisa handle preflight OPTIONS request
 app.options('*', cors());

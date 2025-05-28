@@ -1,5 +1,5 @@
 import express from 'express';
-import cors from 'cors';  // import cors
+import cors from 'cors';
 import kegiatanRoutes from './routes/kegiatanroutes';
 import pjRoutes from './routes/pjroutes';
 import authRoutes from './routes/authroutes';
@@ -9,13 +9,16 @@ import riwayatRoutes from './routes/riwayatroutes';
 
 const app = express();
 
+// ✅ Tambahkan CORS dengan konfigurasi lengkap
 app.use(cors({
-  origin: ['http://localhost:3000','https://backenduaspw-production.up.railway.app'],  // sesuaikan dengan alamat frontend-mu
-  methods: ['GET', 'POST', 'PUT','PATCH', 'DELETE'],
-  credentials: true
+  origin: ['http://localhost:3000'], // tambahkan frontend URL saja
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'], // penting untuk token/jwt
+  credentials: true,
 }));
 
- console.log('User role:');
+// ✅ Pastikan Express bisa handle preflight OPTIONS request
+app.options('*', cors());
 
 app.use(express.json());
 
@@ -30,4 +33,3 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-

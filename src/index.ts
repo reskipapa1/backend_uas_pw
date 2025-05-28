@@ -26,6 +26,8 @@ app.use('/transaksi', transaksiRoutes);
 app.use('/riwayat', riwayatRoutes);
 app.use('/auth', authRoutes);
 
-app.listen(3001, () => {
-  console.log('Server running on http://localhost:3001');
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+

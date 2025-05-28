@@ -6,7 +6,7 @@
 "scripts": {
   "dev": "nodemon --watch './src/**/*.ts' --exec ts-node src/index.ts",
   "build": "prisma generate && tsc",
-  "start": "prisma generate && tsc && prisma migrate deploy && node dist/index.js",
+  "start": "prisma generate && prisma migrate deploy && ts-node src/index.ts",
   "postinstall": "prisma generate"
 },
   "keywords": [],

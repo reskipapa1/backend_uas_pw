@@ -10,7 +10,7 @@ import riwayatRoutes from './routes/riwayatroutes';
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:3000',  // sesuaikan dengan alamat frontend-mu
+  origin: ['http://localhost:3000','https://backenduaspw-production.up.railway.app'],  // sesuaikan dengan alamat frontend-mu
   methods: ['GET', 'POST', 'PUT','PATCH', 'DELETE'],
   credentials: true
 }));
